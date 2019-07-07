@@ -6,6 +6,9 @@ const session = require('express-session');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');;
 
+const loginRouter = require('./routes/login');
+const registerRouter = require('./routes/register');
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: '122345564fasdfafa54fsadaf',
@@ -14,8 +17,10 @@ app.use(session({
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-
 app.use(helmet());
+
+app.use('/login',loginRouter);
+app.use('/register',registerRouter);
 /*
 app.use(function(req, res, next) {
   next(createError(404));
