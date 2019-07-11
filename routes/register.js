@@ -1,7 +1,7 @@
 const express = require('express');
 const randomstring = require('randomstring');
 const nodemailer = require('nodemailer');
-const db = require('../db/connetion');
+const db = require('../db/connection');
 const crypto = require('crypto');
 const router = express.Router();
 
@@ -15,7 +15,7 @@ router.post('/',(req,res) => {
     req.socket.remoteAddress ||
     req.connection.socket.remoteAddress;
     const Pw = crypto.createHash('sha512').update(req.body.pw).digest('base64');
-    if(Pwd===''||Email==='')
+    if(Pw === ''||Email === ''||ID === ''||Phone === ''||Addr === '')
         res.send("<script type='text/javascript'>alert('입력되지 않은 값이 있어요^( '-' )^');window.location.href='/register';</script>");
     else if(pw.length<8||pw.length>20)
         res.send('<script type="text/javascript">alert("패스워드의 길이가 맞아요(。・_・。)");window.location.href="/register";</script>');

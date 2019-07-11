@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('../db/connetion');
+const db = require('../db/connection');
 const crypto = require('crypto');
 const moment = require('moment');
 const router = express.Router();
