@@ -4,8 +4,9 @@ const app = express();
 const path = require('path');
 const session = require('express-session');
 const helmet = require('helmet');
-const bodyParser = require('body-parser');;
+const bodyParser = require('body-parser');
 
+const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 
@@ -23,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views','./views');
 
-
+app.use('/',indexRouter);
 app.use('/login',loginRouter);
 app.use('/register',registerRouter);
 
