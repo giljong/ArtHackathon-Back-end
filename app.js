@@ -8,6 +8,9 @@ const bodyParser = require('body-parser');
 
 const Router = require('./routes/auth.index');
 
+var cors = require("cors")
+app.use(cors())
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: '122345564fasdfafa54fsadaf',
