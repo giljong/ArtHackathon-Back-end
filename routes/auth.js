@@ -80,10 +80,6 @@ exports.rank = (req,res) => {
             }
             sum+=result[i].SCORE;
         }
-        res.render('rank.ejs',{
-            user : user,
-            data : result,
-            sum : sum
-        })
+        res.json({data : result},{user : user},{sum : sum});
     })
 }
