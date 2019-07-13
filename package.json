@@ -1,0 +1,33 @@
+{
+  "name": "arthackathon-back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giljong/ArtHackathon-Back-end.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giljong/ArtHackathon-Back-end/issues"
+  },
+  "homepage": "https://github.com/giljong/ArtHackathon-Back-end#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "helmet": "^3.18.0",
+    "http-errors": "^1.7.3",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mysql": "^2.17.1",
+    "node-mailer": "^0.1.1",
+    "path": "^0.12.7",
+    "randomstring": "^1.1.5"
+  }
+}
