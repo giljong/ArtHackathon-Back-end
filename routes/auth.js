@@ -1,7 +1,7 @@
 const db = require('../db/connection');
 const jwt = require("jsonwebtoken")
 const crypto = require("crypto")
-const {secret} = require("../secret")
+const {secret} = require("../secret.js")
 
 exports.login = (req, res) => {
   const {
