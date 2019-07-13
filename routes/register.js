@@ -30,6 +30,7 @@ router.post('/',(req,res) => {
             else{
                 const authkey = randomstring.generate();
                 db.query('insert into Users (ID,PW,EMAIL,AUTHKEY,ADDR,PHONE) values (?,?,?,?,?,?)',[Id,Pw,Email,authkey,Addr,Phone]);
+                db.query('insert into recommend (user) values (?)',Id);
                 res.send('<script type="text/javascript">alert("회원가입 성공!ヾ|๑╹◡╹๑|ﾉ");window.location.href="/login";</script>');
                 const transporter = nodemailer.createTransport({
                     service: 'Gmail',
