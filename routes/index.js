@@ -20,18 +20,19 @@ router.get('/',(req,res) => {
             let ShowName = [];
             let GoodName=[];
             show = [
-                {cnt : /*result.Concert*/1, name : "Concert"},
-                {cnt : /*result.Drama*/2, name : "Drama"},
-                {cnt : /*result.Opera*/3, name : "Opera"},
-                {cnt : /*result.Dance*/4, name : "Dance"},
-                {cnt : /*result.Musical*/5, name : "Musical"},
-                {cnt : /*result.Sother*/6, name : "Sother"}
+                {cnt : result.Concert, name : "Concert"},
+                {cnt : result.Drama, name : "Drama"},
+                {cnt : result.Opera, name : "Opera"},
+                {cnt : result.Dance, name : "Dance"},
+                {cnt : result.Musical, name : "Musical"},
+                {cnt : result.Sother, name : "Sother"}
             ];
             goodies = [
-                {cnt : /*result.KeyRing*/4, name : "KeyRing"},
-                {cnt : /*result.PhoneCase*/3, name : "PhoneCase"},
-                {cnt : /*result.PhoteCard*/2, name : "PhotoCard"},
-                {cnt : /*result.Gother*/1, name : "Gother"}
+                {cnt : result.KeyRing, name : "KeyRing"},
+                {cnt : result.PhoneCase, name : "PhoneCase"},
+                {cnt : result.PhoteCard, name : "PhotoCard"},
+                {cnt : result.Charact, name : "Charact"},
+                {cnt : result.Gother, name : "Gother"}
             ];
             show.sort((a, b) => { 
                 return b["cnt"] - a["cnt"];
@@ -52,7 +53,7 @@ router.get('/',(req,res) => {
                 ShowArr.push(result);
             })
             for(var j = 0;j<GoodName.length;j++){
-                db.query("select * from goodies where scategorize = ? and gcategorize = ?",[ShowName[i],GoodName[j]],(err,result) =>{
+                db.query("select * from goodies where scategorize = ? and gcategorize = ? order by desc",[ShowName[i],GoodName[j]],(err,result) =>{
                     if(err) console.log(err)
                     GoodiesArr.push(result);
                 })

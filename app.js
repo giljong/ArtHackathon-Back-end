@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
+const showRouter = require('./routes/show');
+const goodRouter = require('./routes/goodies');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
@@ -24,9 +26,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views','./views');
 
-app.use('/',indexRouter);
+//app.use('/',indexRouter);
 app.use('/login',loginRouter);
 app.use('/register',registerRouter);
+app.use('/show',showRouter);
+app.use('/goodies',goodRouter);
+//app.use('/logout',logoutRouter);
+
+app.get('/',(req,res) =>{
+    sc='오페라'
+    gc = '캐릭터'
+    console.log('update recommend set ' + sc + '=' + sc + '+1 where user = ?');
+})
 
 app.use((req, res, next) =>{
   next(createError(404));
@@ -46,4 +57,4 @@ app.listen(3000, () => {
   console.log("connect");
 });
 
-module.exports = app;
+//module.exports = app;
