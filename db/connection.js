@@ -3,7 +3,7 @@ var db_config = {
     host: '192.168.200.5',
     port: 3306,
     user: 'art',
-    password: '',
+    password: '1234',
     database: 'Art'
 };
   var connection;
