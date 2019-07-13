@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 var db_config = {
-    host: '192.168.43.69',
+    host: '106.101.1.155',
     port: 3306,
     user: 'art',
     password: '1234',

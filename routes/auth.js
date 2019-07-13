@@ -36,16 +36,17 @@ exports.login = (req, res) => {
 
 exports.register = (req, res) => {
     const {
-    Id,Email
+    id,email
   } = req.body
+    console.log(req.body);
     const Pw = crypto.createHash('sha512').update(req.body.pw).digest('base64');
-    db.query('select * from users where id = ? or email = ?',[Id,Email],(err,result) =>{
+    db.query('select * from users where id = ? or email = ?',[id,email],(err,result) =>{
         if(err) throw err;
         if(result.length){
             res.status(403).json({success : false});
         }
         else{
-            db.query('insert into users (id,email,pw) values(?,?,?)',[Id,Email,Pw]);
+            db.query('insert into users (id,email,pw) values(?,?,?)',[id,email,Pw]);
             res.status(200).json({success : true})
         }
     })
