@@ -10,15 +10,13 @@ exports.login = (req, res) => {
   const pw = crypto.createHash('sha512').update(req.body.pw).digest('base64');
 
   db.query('select * from Users where ID = ? and PW = ?',[id,pw],(err,result) =>{
-    if(err)  console.log(err);
+    if(err)  console.log(err, 66666);
     if(!result.length){
         res.status(403).json({success : false});
     }
     else{
-        const data = {
-            result
-        }
-        jwt.sign(
+        const data = {...result[0]}
+        const token = jwt.sign(
             data,
             secret, {
               expiresIn: "7d",
@@ -26,9 +24,11 @@ exports.login = (req, res) => {
               subject: "userInfo"
         })
         res.status(200).json(
-            {success : true},
-            {token : data},
-            {user : result}
+            {
+                success : true,
+                token,
+                user: data
+            }
         );
     }
   })
@@ -52,17 +52,18 @@ exports.register = (req, res) => {
     })
 }
 exports.rank = (req,res) => {
-    const{
-        Id
+    const {
+        ID
     } = req.decoded
-    user = [];
-    db.query('select * from user order by score desc',(err,result)=>{
+    let user = null;
+    console.log(req.decoded.result)
+    db.query('select * from users order by score desc',(err,result)=>{
         if(err) throw err;
-        sum = 0;
+        let sum = 0;
+
+        const user = result.find(r => r.ID === ID)
+
         for(var i = 0;i<result.length;i++){
-            if(result[i].ID === Id){
-                user.push(result[i]);
-            }
             if(i===0){
                 Max = result[i].SCORE;
                 MaxIndex = i;
@@ -80,6 +81,11 @@ exports.rank = (req,res) => {
             }
             sum+=result[i].SCORE;
         }
-        res.json({data : result},{user : user},{sum : sum});
+
+        const data = {
+        data : result,
+        user : user,
+        sum : sum}
+        res.json(data);
     })
 }

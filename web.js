@@ -12,11 +12,11 @@ var cors = require("cors")
 app.use(cors())
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: '122345564fasdfafa54fsadaf',
-  resave: false, 
-  saveUninitialized: true,
-}));
+// app.use(session({
+//   secret: '122345564fasdfafa54fsadaf',
+//   resave: false, 
+//   saveUninitialized: true,
+// }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(helmet());

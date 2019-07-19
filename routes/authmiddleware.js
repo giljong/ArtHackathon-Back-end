@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken")
+const {secret} = require("../secret.js")
+
 
 const authMiddleware = (req, res, next) => {
   // read the token from header or url
@@ -13,7 +15,7 @@ const authMiddleware = (req, res, next) => {
 
   // create a promise that decodes the token
   const p = new Promise((resolve, reject) => {
-    jwt.verify(token, req.app.get("jwt-secret"), (err, decoded) => {
+    jwt.verify(token, secret, (err, decoded) => {
       if (err) reject(err)
       resolve(decoded)
     })
@@ -21,6 +23,7 @@ const authMiddleware = (req, res, next) => {
 
   // if it has failed to verify, it will return an error message
   const onError = error => {
+    console.log(error)
     res.status(403).json({
       success: false,
       message: error.message
